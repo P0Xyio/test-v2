@@ -1,0 +1,33 @@
+version: '4'
+services:
+  db:
+    image: postgres
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: 'postgres'
+      POSTGRES_PASSWORD: 'postgrespassword'
+      POSTGRES_DB: 'backend'
+    networks:
+      - app-net
+
+  app:
+    build: .
+    container_name: backend
+    ports:
+      - '3000:3000'
+    depends_on:
+      - db
+    environment:
+      DATABASE_HOST: 'db'
+      JWT_SECRET: 'secret'
+      DATABASE_PORT: 5432
+      DATABASE_USER: 'postgres'
+      DATABASE_PASSWORD: 'postgrespassword'
+      DATABASE_NAME: 'backend'
+    networks:
+      - app-net
+
+networks:
+  app-net:
+    driver: bridge

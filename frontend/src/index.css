@@ -1,0 +1,14 @@
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    font-family: "Fredoka", sans-serif;
+    --radius: 0.5rem;
+
+    @apply text-text bg-background;
+  }
+}
